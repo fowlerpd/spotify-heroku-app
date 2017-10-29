@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[3]:
+# In[2]:
 
 import requests
 import pandas as pd
@@ -31,15 +31,15 @@ def render_plot():
     source = ColumnDataSource(df)
 
     i = 0
-    p = figure(title='Streams by Genre in 2017', plot_width = 800, plot_height = 600, tools = tools,
-            x_axis_label=' Track Release Year',y_axis_label = 'Number of Streams')#x_axis_type='datetime')
+    p = figure(title='Popular Spotify Tracks in 2017 by Genre and Release Year', plot_width = 800, plot_height = 600, tools = tools,
+            x_axis_label=' Track Release Year',y_axis_label = 'Number of Tracks')#x_axis_type='datetime')
     for col in df.columns[1:]:
         p.line(x='release_year', y=col, source= source, legend = col, line_width=2,line_color=Spectral11[i])
         i+=1
         
     p.legend.orientation = "horizontal"
     hover = p.select_one(HoverTool)
-    hover.tooltips = [('Release Year','$x{int}'),("Number of Streams", "$y{0.2f}")]
+    hover.tooltips = [('Release Year','$x{int}'),("Number of Tracks", "$y{0.2f}")]
     script, div = components(p)
     return render_template('plot.html', script=script, div=div)
 
