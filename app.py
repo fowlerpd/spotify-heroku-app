@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[10]:
+# In[1]:
 
 import requests
 import pandas as pd
@@ -21,8 +21,12 @@ df = pd.read_csv(url)
 #df = pd.read_csv('genres_by_year.csv')
 #app.vars={}
 
-
 @app.route('/')
+def main():
+    return redirect('/plot')
+
+
+@app.route('/plot')
 def render_plot():
     source = ColumnDataSource(df)
 
