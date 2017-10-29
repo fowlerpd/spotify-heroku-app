@@ -1,8 +1,9 @@
 
 # coding: utf-8
 
-# In[72]:
+# In[10]:
 
+import requests
 import pandas as pd
 from bokeh.plotting import figure,show
 from bokeh.palettes import Spectral11
@@ -15,7 +16,9 @@ from flask import Flask,render_template,request,redirect,session
 app = Flask(__name__)
 
 tools = "pan,wheel_zoom,reset,hover,save"
-df = pd.read_csv('genres_by_year.csv')
+url = 'https://raw.githubusercontent.com/fowlerpd/spotify-heroku-app/master/genres_by_year.csv'
+df = pd.read_csv(url)
+#df = pd.read_csv('genres_by_year.csv')
 #app.vars={}
 
 
@@ -36,11 +39,12 @@ def render_plot():
     script, div = components(p)
     return render_template('plot.html', script=script, div=div)
 
-  
+    
 if __name__ == '__main__':
     app.run(port=33507)
 
 
+# In[ ]:
 
 
 
